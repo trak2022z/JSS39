@@ -1,4 +1,4 @@
-
+//Exercise 0.1
 function orderExecutor(resolve, reject) {
   console.log('1');
   setTimeout(function () {
@@ -11,13 +11,37 @@ p1.then(console.log);
 console.log('3');
 
 
-//Exercise 2.3: Button click!
-function buttonExecutor(resolve, reject) {
-  let myBtn = document.querySelector('button');
+//Exercise 0.1b: What’s the order?
+function orderExecutor2(resolve, reject) {
+  console.log('11');
+  resolve('22');
+}
+
+let p2 = new Promise(orderExecutor2);
+p2.then(console.log);
+console.log('33');
+
+
+//Exercise 0.2: No button click
+function buttonExecutor1(resolve, reject) {
+    let myBtn1 = document.querySelector('button');
+    myBtn1.addEventListener('click', resolve);
+    setTimeout(reject, 5000);
+}
+
+let betterClick1 = new Promise(buttonExecutor1); 
+betterClick1
+    .then(function () { console.log('Option A'); })
+    .catch(function () { console.log('Option B'); });
+
+
+//Exercise 0.3: Button click!
+function buttonExecutor2(resolve, reject) {
+  let myBtn2 = document.querySelector('button');
   
   //myBtn.addEventListener('click', resolve);
 
-  myBtn.addEventListener('click', function() {
+  myBtn2.addEventListener('click', function() {
   resolve();
   console.log('clicked!');
   });
@@ -25,14 +49,15 @@ function buttonExecutor(resolve, reject) {
   setTimeout(reject, 5000);
 }
 
-let betterClick = new Promise(buttonExecutor);
+let betterClick2 = new Promise(buttonExecutor2);
 
-betterClick
-  .then(function () { console.log('Option A'); })
-  .catch(function () { console.log('Option B'); });
+betterClick2
+  .then(function () { console.log('Option AA'); })
+  .catch(function () { console.log('Option BB'); });
 
 
-//Exercise 2.4: What is logged?
+
+//Exercise 0.4: What is logged?
 function executor(resolve, reject) {
 resolve(1);
 }
@@ -49,7 +74,8 @@ myPromise
 .then(console.log);
 
 
-//Exercise 2.5: What is logged?
+
+//Exercise 0.5: What is logged?
 function executor2(resolve, reject) {
   resolve(1);
 }
@@ -65,12 +91,3 @@ myPromise2
   .then(console.log);
 
 
-//Exercise 2.2: What’s the order?
-function orderExecutor2(resolve, reject) {
-  console.log('11');
-  resolve('22');
-}
-
-let p2 = new Promise(orderExecutor2);
-p2.then(console.log);
-console.log('33');
